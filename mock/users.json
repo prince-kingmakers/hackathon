@@ -1,14 +1,17 @@
 [
   {
     "userId": "casino",
-    "balance": 12450.75
+    "balance": 12450.75,
+    "firstName": "Chinedu"
   },
   {
     "userId": "virtuals",
-    "balance": 8320.5
+    "balance": 8320.5,
+    "firstName": "Amina"
   },
   {
     "userId": "both",
-    "balance": 50200
+    "balance": 50200,
+    "firstName": "Oluwaseun"
   }
 ]

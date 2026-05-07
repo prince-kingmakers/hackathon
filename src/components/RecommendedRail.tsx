@@ -7,9 +7,18 @@ import { useEffect, useState } from "react";
 
 type RecommendedRailProps = {
   items: GameTile[];
+  recentlyPlayed: GameTile[];
 };
 
-const RecommendedRail = ({ items }: RecommendedRailProps) => {
+const recommendedHeading = (recentlyPlayed: GameTile[]) => {
+  const name = recentlyPlayed.find((g) => g.name.trim())?.name.trim();
+  if (!name) {
+    return "Recommended";
+  }
+  return `We see your ${name} vibe, try these`;
+};
+
+const RecommendedRail = ({ items, recentlyPlayed }: RecommendedRailProps) => {
   const [emblaRef] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -29,10 +38,14 @@ const RecommendedRail = ({ items }: RecommendedRailProps) => {
     return null;
   }
 
+  const heading = recommendedHeading(recentlyPlayed);
+
   return (
-    <section className="mt-1 px-3 pb-6 md:px-0" aria-label="Recommended">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-bk-backdrop">Recommended</h2>
+    <section className="mt-1 px-3 pb-6 md:px-0" aria-label={heading}>
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <h2 className="max-w-full text-pretty text-lg font-semibold leading-snug text-bk-backdrop">
+          {heading}
+        </h2>
       </div>
 
       <div className="embla">

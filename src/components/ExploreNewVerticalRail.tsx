@@ -30,8 +30,8 @@ const ExploreNewVerticalRail = ({ items }: ExploreNewVerticalRailProps) => {
   }
 
   const firstVertical = items[0].kind;
-  const verticalName = firstVertical === "virtuals" ? "Virtuals" : "Casino";
-  const sectionTitle = `Explore ${verticalName}`;
+  const verticalName = firstVertical === "virtuals" ? "Virtuals" : "Games";
+  const sectionTitle = `${verticalName} – Oya try new thing!`;
 
   return (
     <section className="mt-1 px-3 pb-6 md:px-0" aria-label={sectionTitle}>

@@ -11,6 +11,12 @@ This document defines the personalized homepage experience for **KingMakers bran
 - Improve engagement and retention  
 - Drive revenue through smart content prioritization  
 
+### Brand labeling (BetKing)
+
+**BetKing** labels the **casino** vertical as **Games** everywhere users see it: primary navigation, dual-vertical tabs, `verticals.json` **`name`** fields returned to the client, and headings such as “Explore …”. Other KingMakers brands (for example **SuperSportBet**) may keep **Casino** in product copy. Internal identifiers stay **`casino`** (`userId` persona values, vertical `id`, API query params, game `kind`, URLs under `/en-ng/casino/...` where routing is legacy).
+
+This prototype’s mock CMS data targets BetKing: client-facing **`name`** strings use **Games** where they denote the casino vertical.
+
 ---
 
 ## 2. Core principles
@@ -25,7 +31,7 @@ This document defines the personalized homepage experience for **KingMakers bran
 
 ## 3. Scope and verticals
 
-KingMakers products cover **three verticals: sports, casino, and virtuals.**
+KingMakers products cover **three verticals: sports, casino, and virtuals** (BetKing UI: **Games** for the casino vertical).
 
 The homepage rails described in this document focus **casino and virtuals**.
 
@@ -34,7 +40,7 @@ The homepage rails described in this document focus **casino and virtuals**.
 | Persona | Behavior |
 |--------|----------|
 | **Virtuals-only** | Plays virtuals; no meaningful casino history |
-| **Casino-only** | Plays casino; no meaningful virtuals history |
+| **Casino-only** | Plays casino (labeled **Games** on BetKing); no meaningful virtuals history |
 | **Both** | Plays both virtuals and casino |
 
 The homepage adapts layout and optional navigation (see [Dual-vertical UX](#5-dual-vertical-ux)) based on these personas.
@@ -50,7 +56,7 @@ Sections appear **in this order**, top to bottom:
 - **Desktop / tablet:** **Logo** on the **left**, **primary menu items** in the **center**, **wallet balance** and **profile** on the **right**.  
 - **Mobile:** **Logo** top-left and **wallet + profile** top-right on one row; **primary navigation items** live in a **bottom** bar (thumb reach).
 
-The standard primary navigation entries are **Sports**, **Casino**, **Virtuals**, and **Promotions**. Each entry's URL follows the convention **`/en-ng/<name-lowercase>`** — for example `/en-ng/sports`, `/en-ng/casino`, `/en-ng/virtuals`, `/en-ng/promotions`.
+The standard primary navigation entries are **Sports**, **Casino** (BetKing: **Games**), **Virtuals**, and **Promotions**. Each entry's URL follows **`/en-ng/<segment>`** — for example `/en-ng/sports`, `/en-ng/games` (BetKing casino entry), `/en-ng/casino` (other brands), `/en-ng/virtuals`, `/en-ng/promotions`.
 
 Wallet balance is shown in the header alongside the profile entry point.
 
@@ -66,7 +72,7 @@ Up to **5** virtuals and/or casino titles the user has played most recently. Any
 
 Each rail is a horizontal scroller of cards.
 
-- **Casino card:** the game's tile artwork (image only).
+- **Casino card** (BetKing: **Games** tile): the game's tile artwork (image only).
 - **Virtuals card:** the league/game logo, the time until the next round, and a play button. When the round time is the current time or in the past, the card shows a **Live** indicator instead of a countdown.
 - **Badge treatment (current increment):** cards can optionally show **Exclusive** or **New**. Badges use a white background, rounded corners, and red text. If both flags are present on an item, show **Exclusive** and hide **New**.
 
@@ -93,7 +99,7 @@ Cross-sells **new** content on the **opposite** vertical from the user's primary
 ## 5. Dual-vertical UX
 
 - **Virtuals-only** and **Casino-only** users: **no** homepage vertical tab strip beyond what the personalized payload requires (single implicit vertical).  
-- **Both** verticals: show a **tab control** **Virtuals | Casino** so the user switches context.
+- **Both** verticals: show a **tab control** **Virtuals | Casino** — **BetKing:** **Virtuals | Games**.
 
 ### Tab-scoped vs global (default behavior)
 
@@ -150,14 +156,14 @@ In this prototype, all four endpoints live under a dynamic Next.js locale segmen
 
 | Endpoint (illustrative) | Purpose |
 |-------------------------|---------|
-| **`getNavigationMenu`** | Primary menu items: **`id`**, **`name`**, **`url`** (e.g. Sports, Casino, Virtuals, Promotions) |
+| **`getNavigationMenu`** | Primary menu items: **`id`**, **`name`**, **`url`** (e.g. Sports, Games on BetKing / Casino elsewhere, Virtuals, Promotions) |
 
 **Implementation in this prototype**
 
 - Route: `GET /{locale}/cms/navigation` (e.g. `/en-ng/cms/navigation`); no params
 - `{locale}` is a dynamic Next.js segment (`src/app/[locale]/cms/navigation/route.ts`)
 - Response (`NavigationMenuItem[]`): `{ id: string; name: string; url: string }[]`
-- Source: `mock/navigation.json` (Sports, Casino, Virtuals, Promotions); item URLs are returned already locale-prefixed (e.g. `/en-ng/sports`)
+- Source: `mock/navigation.json` (BetKing-facing: Sports, **Games**, Virtuals, Promotions); item URLs are returned already locale-prefixed (e.g. `/en-ng/sports`, `/en-ng/games`)
 - Caching: `force-dynamic`; called with `cache: "no-store"` from `src/app/[locale]/page.tsx`
 
 ### Banners
@@ -237,7 +243,7 @@ The BFF joins these sources and emits the tabbed rails payload in [Response shap
 [
   {
     "id": "casino",
-    "name": "Casino"
+    "name": "Games"
   },
   {
     "id": "virtuals",
@@ -250,6 +256,7 @@ Notes:
 
 - Required: `id`, `name`
 - `id` values are stable keys used across games, bets, tabs, and rail composition.
+- **`name`** is client-facing; BetKing uses **Games** for `id: "casino"`. Other brands may use **Casino**.
 - Vertical ordering is **not static metadata**. The server computes tab/rail order per user from stake totals in `bets.json` (highest total stake first).
 
 ##### `categories.json`: expected fields
@@ -260,7 +267,7 @@ Notes:
 [
   {
     "id": "cat-live-casino",
-    "name": "Live Casino",
+    "name": "Live Games",
     "verticalId": "casino"
   },
   {
@@ -280,6 +287,7 @@ Notes:
 - `verticalId` must match an `id` in `verticals.json`.
 - `id` values are stable keys used by games (`categoryId`) and rail composition.
 - In rendered rails, category heading text comes from `name`; `description` is lower-emphasis supporting copy when available.
+- BetKing: prefer **Games** over **Casino** in user-visible **`name`** strings (example above).
 
 ##### `games.json`: expected fields
 
@@ -340,7 +348,7 @@ _None — banner treatment resolved:_ homepage banners are **editorial advertisi
 
 **Resolved for this spec:**
 
-- Dual-vertical tabs use **Casino** (not ambiguous “Games” labeling).  
+- Dual-vertical tabs: **BetKing** labels the casino vertical **Games** (other brands may use **Casino**).  
 - **Max two stake-sorted category rows** apply **per active vertical tab** when the user plays both verticals.
 
 ---
@@ -369,7 +377,7 @@ Example: `{ "url": "...", "alt": "..." }`.
 
 All thumbnails use **`image`: `{ url, alt }`**.
 
-**Casino item**
+**Casino item** (BetKing UI: **Games** product tile)
 
 ```json
 {

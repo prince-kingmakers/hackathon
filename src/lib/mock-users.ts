@@ -20,5 +20,9 @@ export const getUserDetailsById = (id: string | undefined): UserDetails => {
     trimmed && isPersona(trimmed) && userByPersona.has(trimmed)
       ? userByPersona.get(trimmed)!
       : userByPersona.get(DEFAULT_ID)!;
-  return { userId: match.userId, balance: match.balance };
+  return {
+    userId: match.userId,
+    balance: match.balance,
+    firstName: match.firstName,
+  };
 };

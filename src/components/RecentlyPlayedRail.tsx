@@ -35,9 +35,9 @@ const RecentlyPlayedRail = ({ items }: RecentlyPlayedRailProps) => {
   const hasMoreItems = items.length > MAX_VISIBLE_ITEMS;
 
   return (
-    <section className="mt-6 px-3 pb-6 md:px-0" aria-label="Recently played">
+    <section className="mt-6 px-3 pb-6 md:px-0" aria-label="Recently Played – Oya, continue!">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-bk-backdrop">Recently played</h2>
+        <h2 className="text-lg font-semibold text-bk-backdrop">Recently Played – Oya, continue!</h2>
         {hasMoreItems ? (
           <button type="button" className="text-sm font-medium text-bk-brand underline">
             View all

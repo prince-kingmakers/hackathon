@@ -5,47 +5,60 @@ import ExploreNewVerticalRail from "@/components/ExploreNewVerticalRail";
 import RecentlyPlayedRail from "@/components/RecentlyPlayedRail";
 import RecommendedRail from "@/components/RecommendedRail";
 import type { PersonalizedHomeFeedSlice } from "@/types/personalization";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type PersonalizedHomeFeedTabsProps = {
   slices: PersonalizedHomeFeedSlice[];
+  firstName: string;
 };
 
 const verticalLabel = (id: string) => {
   if (id === "virtuals") return "Virtuals";
-  if (id === "casino") return "Casino";
+  if (id === "casino") return "Games";
   return id.charAt(0).toUpperCase() + id.slice(1);
 };
 
-const FeedRails = ({ slice }: { slice: PersonalizedHomeFeedSlice | undefined }) => {
+const FeedRails = ({
+  slice,
+  firstName,
+}: {
+  slice: PersonalizedHomeFeedSlice | undefined;
+  firstName: string;
+}) => {
   if (!slice) {
     return null;
   }
 
   return (
     <>
+      <h1 className="mx-3 mb-4 text-center text-2xl font-bold text-bk-backdrop md:mx-0 mt-4">
+        <span className="font-extrabold text-bk-primary-light">{firstName}</span>, our No.1{" "}
+        {verticalLabel(slice.id)} fan!
+      </h1>
       <RecentlyPlayedRail items={slice.recentlyPlayed ?? []} />
       <CategoriesByStakeRail rows={slice.categoriesByStake ?? []} />
-      <RecommendedRail items={slice.recommendedNotPlayed ?? []} />
+      <RecommendedRail
+        items={slice.recommendedNotPlayed ?? []}
+        recentlyPlayed={slice.recentlyPlayed ?? []}
+      />
       <ExploreNewVerticalRail items={slice.exploreNewVertical ?? []} />
     </>
   );
 };
 
-const PersonalizedHomeFeedTabs = ({ slices }: PersonalizedHomeFeedTabsProps) => {
+const PersonalizedHomeFeedTabs = ({ slices, firstName }: PersonalizedHomeFeedTabsProps) => {
   const [activeSliceId, setActiveSliceId] = useState(slices[0]?.id ?? "");
 
-  useEffect(() => {
-    if (!slices.some((slice) => slice.id === activeSliceId)) {
-      setActiveSliceId(slices[0]?.id ?? "");
-    }
-  }, [activeSliceId, slices]);
+  const resolvedActiveSliceId = slices.some((slice) => slice.id === activeSliceId)
+    ? activeSliceId
+    : (slices[0]?.id ?? "");
 
   if (slices.length <= 1) {
-    return <FeedRails slice={slices[0]} />;
+    return <FeedRails slice={slices[0]} firstName={firstName} />;
   }
 
-  const activeSlice = slices.find((slice) => slice.id === activeSliceId) ?? slices[0];
+  const activeSlice =
+    slices.find((slice) => slice.id === resolvedActiveSliceId) ?? slices[0];
 
   return (
     <section className="mt-4" aria-label="Personalized vertical tabs">
@@ -86,7 +99,7 @@ const PersonalizedHomeFeedTabs = ({ slices }: PersonalizedHomeFeedTabsProps) => 
         role="tabpanel"
         aria-labelledby={`home-vertical-tab-${activeSlice.id}`}
       >
-        <FeedRails slice={activeSlice} />
+        <FeedRails slice={activeSlice} firstName={firstName} />
       </div>
     </section>
   );

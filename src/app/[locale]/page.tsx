@@ -58,7 +58,7 @@ export default async function Home(props: HomePageProps) {
       />
       <main className="lg:w-[1200px] w-full mx-auto">
         <BannerCarousel banners={banners} />
-        <PersonalizedHomeFeedTabs slices={personalizedFeed} />
+        <PersonalizedHomeFeedTabs slices={personalizedFeed} firstName={user.firstName} />
       </main>
     </div>
   );

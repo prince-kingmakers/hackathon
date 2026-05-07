@@ -29,7 +29,9 @@ const CategoryStakeRow = ({ row, nowMs }: CategoryStakeRowProps) => {
   return (
     <div className="mb-6 last:mb-0">
       <div className="mb-1 flex items-start justify-between gap-3">
-        <h2 className="text-lg font-semibold text-bk-backdrop">{row.name}</h2>
+        <h2 className="text-lg font-semibold text-bk-backdrop">
+          More {row.name} – E get more!
+        </h2>
         {hasMoreItems ? (
           <button type="button" className="shrink-0 text-sm font-medium text-bk-brand underline">
             View all
