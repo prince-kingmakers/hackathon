@@ -68,6 +68,7 @@ Each rail is a horizontal scroller of cards.
 
 - **Casino card:** the game's tile artwork (image only).
 - **Virtuals card:** the league/game logo, the time until the next round, and a play button. When the round time is the current time or in the past, the card shows a **Live** indicator instead of a countdown.
+- **Badge treatment (current increment):** cards can optionally show **Exclusive** or **New**. Badges use a white background, rounded corners, and red text. If both flags are present on an item, show **Exclusive** and hide **New**.
 
 ### 4. Categories sorted by stake
 
@@ -177,6 +178,22 @@ In this prototype, all four endpoints live under a dynamic Next.js locale segmen
 
 One endpoint, **`getPersonalizedHomeFeed`**, returns personalized rails **excluding** user details, navigation, and banners.
 
+#### Current implementation increment (this prototype step)
+
+- Route: `GET /{locale}/bff/personalized-home-feed?id={persona}`
+- Response currently includes one slice with `id` and `recentlyPlayed` only:
+
+```json
+[
+  {
+    "id": "virtuals",
+    "recentlyPlayed": []
+  }
+]
+```
+
+- `recentlyPlayed` is capped at **5** items, sorted by most recent `placedAt` descending, deduplicated by `gameId`.
+
 #### Response shape: tabbed vertical payloads
 
 The endpoint returns an **array of objects**. Each object has:
@@ -193,13 +210,127 @@ Field names are logical; JSON keys follow platform standards.
 | Field | Description |
 |-------|-------------|
 | `recentlyPlayed` | Tiles the user has played; **casino** vs **virtuals** per tagged union or parallel lists (implementation choice). |
-| `categoriesByStake` | Array of `{ title, subtitle, items[] }`; **`items`** use [tile shapes](#tile-shapes). Sorted/limited **server-side**. |
+| `categoriesByStake` | Array of `{ name, description, items[] }`; for **virtuals** categories `description` is required, for **casino** categories it is optional. **`items`** use [tile shapes](#tile-shapes). Sorted/limited **server-side**. |
 | `recommendedNotPlayed` | **Same structure as `recentlyPlayed`** for the **same vertical** as this slice; omit section if empty. |
 | `exploreNewVertical` | Same tile shapes as **`recentlyPlayed`**; cross-sell **opposite** vertical. **Omitted entirely server-side** for users who play **both** verticals. |
 
 ### Client assumptions
 
 Ordering, caps (e.g. max category rows, max items per rail), **`exploreNewVertical`** omission for dual-vertical users, and **de-duplication across rails** are **enforced server-side**. The client **renders** what it receives and hides empty sections.
+
+#### Source JSON architecture for personalization
+
+For maintainability, personalization data is split into small domain files and composed in `getPersonalizedHomeFeed`:
+
+- `verticals.json` — vertical catalog metadata
+- `categories.json` — category catalog keyed to verticals
+- `games.json` — canonical game catalog keyed to categories
+- `bets.json` — user betting events that link users to games
+
+The BFF joins these sources and emits the tabbed rails payload in [Response shape: tabbed vertical payloads](#response-shape-tabbed-vertical-payloads).
+
+##### `verticals.json`: expected fields
+
+`id` and `name` are the **minimum required** fields.
+
+```json
+[
+  {
+    "id": "casino",
+    "name": "Casino"
+  },
+  {
+    "id": "virtuals",
+    "name": "Virtuals"
+  }
+]
+```
+
+Notes:
+
+- Required: `id`, `name`
+- `id` values are stable keys used across games, bets, tabs, and rail composition.
+- Vertical ordering is **not static metadata**. The server computes tab/rail order per user from stake totals in `bets.json` (highest total stake first).
+
+##### `categories.json`: expected fields
+
+`id`, `name`, and `verticalId` are the **minimum required** fields. `description` is conditionally required by vertical.
+
+```json
+[
+  {
+    "id": "cat-live-casino",
+    "name": "Live Casino",
+    "verticalId": "casino"
+  },
+  {
+    "id": "cat-football-virtuals",
+    "name": "Football Virtuals",
+    "description": "Fast football rounds and popular leagues",
+    "verticalId": "virtuals"
+  }
+]
+```
+
+Notes:
+
+- Required: `id`, `name`, `verticalId`
+- Required for virtuals categories: `description` (secondary helper text shown under the category name)
+- Optional for casino categories: `description`
+- `verticalId` must match an `id` in `verticals.json`.
+- `id` values are stable keys used by games (`categoryId`) and rail composition.
+- In rendered rails, category heading text comes from `name`; `description` is lower-emphasis supporting copy when available.
+
+##### `games.json`: expected fields
+
+Each game should have a stable identity and category mapping. Virtual-specific data (for example `time`) is included only for games in virtuals categories.
+
+```json
+[
+  {
+    "id": "vg-premier-league",
+    "name": "Premier League Virtual",
+    "image": { "url": "https://...", "alt": "Premier League Virtual" },
+    "url": "/en-ng/virtuals/premier-league",
+    "categoryId": "cat-football-virtuals",
+    "time": "2026-05-07T09:00:00Z",
+    "isExclusive": true,
+    "isNew": false
+  }
+]
+```
+
+Notes:
+
+- Required for all games: `id`, `name`, `image`, `url`, `categoryId`
+- Required only for virtuals cards: `time` (next round start time)
+- Optional item badge flags: `isExclusive`, `isNew`
+- `categoryId` must match an `id` in `categories.json`.
+- Vertical context is resolved via `game.categoryId -> category.verticalId`.
+- For mock data used in this prototype, each virtual `time` must be in the future and no more than 2 minutes ahead of `now`.
+- Badge priority in UI: `isExclusive` overrides `isNew` when both are true.
+
+##### `bets.json`: expected fields
+
+Your proposed shape is correct and should include user linkage so bets can be filtered per user.
+
+```json
+[
+  {
+    "betId": "b-10001",
+    "userId": "casino",
+    "placedAt": "2026-05-07T08:25:00Z",
+    "stake": 2500,
+    "gameId": "vg-premier-league"
+  }
+]
+```
+
+Notes:
+
+- Required: `betId`, `userId`, `placedAt`, `stake`, `gameId`
+- `userId` links to the persona/user from user-details source.
+- `gameId` links to a record in `games.json`.
 
 ---
 
@@ -255,7 +386,9 @@ All thumbnails use **`image`: `{ url, alt }`**.
   "id": "string",
   "image": { "url": "string", "alt": "string" },
   "url": "string",
-  "time": "ISO-8601 or agreed datetime — next virtual start"
+  "time": "ISO-8601 or agreed datetime — next virtual start",
+  "isExclusive": "boolean (optional)",
+  "isNew": "boolean (optional)"
 }
 ```
 

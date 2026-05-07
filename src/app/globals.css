@@ -32,3 +32,58 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.recently-played-card {
+  background: linear-gradient(180deg, #2a3d76, #13255a);
+}
+
+.recently-played-card.game-vg-scheduled-kings-league {
+  background: linear-gradient(180deg, #a70bab 0.03%, #58005c 99.98%);
+}
+
+.recently-played-card.game-vg-scheduled-kings-liga {
+  background: linear-gradient(180deg, #faaf00, #de8601, #bd6500);
+}
+
+.recently-played-card.game-vg-scheduled-kings-champions-league {
+  background: linear-gradient(181deg, #032cea 0.91%, #021c97 99.09%);
+}
+
+.recently-played-card.game-vg-scheduled-kings-italiano {
+  background: linear-gradient(180deg, #269dd9 20%, #2865b5);
+}
+
+.recently-played-card.game-vg-scheduled-kings-bundliga {
+  background: linear-gradient(180deg, #e51c3e, #950341);
+}
+
+.recently-played-card.game-vg-tournaments-kings-champions {
+  background: linear-gradient(181deg, #032cea 0.91%, #021c97 99.09%);
+}
+
+.recently-played-card.game-vg-tournaments-kings-afkon {
+  background: linear-gradient(180deg, #00104100, #00104166), #00955f;
+}
+
+.recently-played-card.game-vg-tournaments-kings-euro-kup {
+  background:
+    linear-gradient(180deg, #00104100, #00104133),
+    linear-gradient(0deg, #0055ab, #0055ab),
+    #0039ac;
+}
+
+.recently-played-card.game-vg-instant-kings-instaleague {
+  background: linear-gradient(180deg, #a70bab 0.03%, #58005c 99.98%);
+}
+
+.recently-played-card.game-vg-instant-kings-instaliga {
+  background: linear-gradient(180deg, #faaf00, #de8601, #bd6500);
+}
+
+.recently-played-card.game-vg-instant-kings-instaitaliano {
+  background: linear-gradient(180deg, #269dd9 20%, #2865b5);
+}
+
+.recently-played-card.game-vg-instant-kings-instabundliga {
+  background: linear-gradient(180deg, #e51c3e, #950341);
+}

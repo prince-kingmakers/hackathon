@@ -1,0 +1,40 @@
+[
+  {
+    "id": "crash-casino",
+    "name": "Crash",
+    "verticalId": "casino"
+  },
+  {
+    "id": "zama-fruits-promotion-casino",
+    "name": "Zama Fruits Promotion",
+    "verticalId": "casino"
+  },
+  {
+    "id": "slots-casino",
+    "name": "Slots",
+    "verticalId": "casino"
+  },
+  {
+    "id": "betgames-casino",
+    "name": "BetGames",
+    "verticalId": "casino"
+  },
+  {
+    "id": "scheduled-leagues-virtuals",
+    "name": "Scheduled Leagues",
+    "description": "Virtual football, kicking off every minute",
+    "verticalId": "virtuals"
+  },
+  {
+    "id": "scheduled-tournaments-virtuals",
+    "name": "Scheduled Tournaments",
+    "description": "Virtual kup football, with fast knock-outs",
+    "verticalId": "virtuals"
+  },
+  {
+    "id": "instant-leagues-virtuals",
+    "name": "Instant Leagues",
+    "description": "Try our faster, on demand Virtual football",
+    "verticalId": "virtuals"
+  }
+]

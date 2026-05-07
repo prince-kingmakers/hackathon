@@ -15,7 +15,7 @@ const BannerCarousel = ({ banners }: BannerCarouselProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: banners.length > 1,
     align: "start",
-    dragFree: false,
+    dragFree: false,    
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -32,6 +32,18 @@ const BannerCarousel = ({ banners }: BannerCarouselProps) => {
       emblaApi.off("reInit", sync);
     };
   }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi || banners.length <= 1) return;
+
+    const autoplayInterval = window.setInterval(() => {
+      emblaApi.scrollNext();
+    }, 3000);
+
+    return () => {
+      window.clearInterval(autoplayInterval);
+    };
+  }, [emblaApi, banners.length]);
 
   if (banners.length === 0) return null;
 

@@ -1,8 +1,13 @@
 import AppNavigation from "@/components/AppNavigation";
 import BannerCarousel from "@/components/BannerCarousel";
+import CategoriesByStakeRail from "@/components/CategoriesByStakeRail";
+import ExploreNewVerticalRail from "@/components/ExploreNewVerticalRail";
+import RecentlyPlayedRail from "@/components/RecentlyPlayedRail";
+import RecommendedRail from "@/components/RecommendedRail";
 import { DEFAULT_ID } from "@/lib/mock-users";
 import type { BannerItem } from "@/types/banners";
 import type { NavigationMenuItem } from "@/types/navigation";
+import type { PersonalizedHomeFeedSlice } from "@/types/personalization";
 import type { UserDetails } from "@/types/user";
 import { headers } from "next/headers";
 
@@ -13,7 +18,12 @@ const requestOrigin = async () => {
   return `${proto}://${host}`;
 };
 
-export default async function Home(props: PageProps<"/[locale]">) {
+type HomePageProps = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ id?: string | string[] }>;
+};
+
+export default async function Home(props: HomePageProps) {
   const { locale } = await props.params;
   const searchParams = await props.searchParams;
   const rawId = searchParams.id;
@@ -22,11 +32,15 @@ export default async function Home(props: PageProps<"/[locale]">) {
 
   const origin = await requestOrigin();
 
-  const [bannersRes, navRes, userRes] = await Promise.all([
+  const [bannersRes, navRes, userRes, personalizedFeedRes] = await Promise.all([
     fetch(`${origin}/${locale}/cms/banners`, { cache: "no-store" }),
     fetch(`${origin}/${locale}/cms/navigation`, { cache: "no-store" }),
     fetch(
       `${origin}/${locale}/bff/user-details?id=${encodeURIComponent(resolvedId)}`,
+      { cache: "no-store" },
+    ),
+    fetch(
+      `${origin}/${locale}/bff/personalized-home-feed?id=${encodeURIComponent(resolvedId)}`,
       { cache: "no-store" },
     ),
   ]);
@@ -34,6 +48,11 @@ export default async function Home(props: PageProps<"/[locale]">) {
   const banners = (await bannersRes.json()) as BannerItem[];
   const navigationItems = (await navRes.json()) as NavigationMenuItem[];
   const user = (await userRes.json()) as UserDetails;
+  const personalizedFeed = (await personalizedFeedRes.json()) as PersonalizedHomeFeedSlice[];
+  const recentlyPlayed = personalizedFeed[0]?.recentlyPlayed ?? [];
+  const categoriesByStake = personalizedFeed[0]?.categoriesByStake ?? [];
+  const recommendedNotPlayed = personalizedFeed[0]?.recommendedNotPlayed ?? [];
+  const exploreNewVertical = personalizedFeed[0]?.exploreNewVertical ?? [];
 
   return (
     <div className="flex min-h-screen flex-col bg-bk-page-bg">
@@ -46,6 +65,10 @@ export default async function Home(props: PageProps<"/[locale]">) {
       />
       <main className="lg:w-[1200px] w-full mx-auto">
         <BannerCarousel banners={banners} />
+        <RecentlyPlayedRail items={recentlyPlayed} />
+        <CategoriesByStakeRail rows={categoriesByStake} />
+        <RecommendedRail items={recommendedNotPlayed} />
+        <ExploreNewVerticalRail items={exploreNewVertical} />
       </main>
     </div>
   );

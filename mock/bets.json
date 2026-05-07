@@ -1,0 +1,198 @@
+[
+  {
+    "betId": "b-20001",
+    "userId": "virtuals",
+    "placedAt": "2026-02-15T10:20:00Z",
+    "stake": 3200,
+    "gameId": "vg-scheduled-kings-league"
+  },
+  {
+    "betId": "b-20002",
+    "userId": "virtuals",
+    "placedAt": "2026-02-27T13:05:00Z",
+    "stake": 2800,
+    "gameId": "vg-scheduled-kings-liga"
+  },
+  {
+    "betId": "b-20003",
+    "userId": "virtuals",
+    "placedAt": "2026-03-10T09:40:00Z",
+    "stake": 3500,
+    "gameId": "vg-scheduled-kings-champions-league"
+  },
+  {
+    "betId": "b-20004",
+    "userId": "virtuals",
+    "placedAt": "2026-03-22T15:10:00Z",
+    "stake": 3000,
+    "gameId": "vg-scheduled-kings-italiano"
+  },
+  {
+    "betId": "b-20005",
+    "userId": "virtuals",
+    "placedAt": "2026-01-03T12:25:00Z",
+    "stake": 2600,
+    "gameId": "vg-tournaments-kings-afkon"
+  },
+  {
+    "betId": "b-20006",
+    "userId": "virtuals",
+    "placedAt": "2026-05-15T11:55:00Z",
+    "stake": 2900,
+    "gameId": "vg-tournaments-kings-champions"
+  },
+  {
+    "betId": "b-20007",
+    "userId": "virtuals",
+    "placedAt": "2026-05-01T14:30:00Z",
+    "stake": 3100,
+    "gameId": "vg-tournaments-kings-euro-kup"
+  },
+  {
+    "betId": "b-20008",
+    "userId": "both",
+    "placedAt": "2026-02-18T08:45:00Z",
+    "stake": 1200,
+    "gameId": "vg-scheduled-kings-bundliga"
+  },
+  {
+    "betId": "b-20009",
+    "userId": "both",
+    "placedAt": "2026-03-05T16:20:00Z",
+    "stake": 1400,
+    "gameId": "vg-instant-kings-instaleague"
+  },
+  {
+    "betId": "b-20010",
+    "userId": "both",
+    "placedAt": "2026-03-28T10:35:00Z",
+    "stake": 1600,
+    "gameId": "vg-instant-kings-instaliga"
+  },
+  {
+    "betId": "b-20011",
+    "userId": "both",
+    "placedAt": "2026-04-12T13:50:00Z",
+    "stake": 1500,
+    "gameId": "vg-instant-kings-instaitaliano"
+  },
+  {
+    "betId": "b-20012",
+    "userId": "both",
+    "placedAt": "2026-05-04T09:15:00Z",
+    "stake": 1300,
+    "gameId": "vg-instant-kings-instabundliga"
+  },
+  {
+    "betId": "b-20013",
+    "userId": "casino",
+    "placedAt": "2026-02-16T10:05:00Z",
+    "stake": 3300,
+    "gameId": "cg-crash-aviator-spribe"
+  },
+  {
+    "betId": "b-20014",
+    "userId": "casino",
+    "placedAt": "2026-02-28T14:10:00Z",
+    "stake": 2900,
+    "gameId": "cg-crash-jetx-smartsoft"
+  },
+  {
+    "betId": "b-20015",
+    "userId": "casino",
+    "placedAt": "2026-03-11T11:30:00Z",
+    "stake": 3400,
+    "gameId": "cg-slots-gates-of-olympus"
+  },
+  {
+    "betId": "b-20016",
+    "userId": "casino",
+    "placedAt": "2026-03-24T16:40:00Z",
+    "stake": 3000,
+    "gameId": "cg-slots-gates-of-olympus-1000"
+  },
+  {
+    "betId": "b-20017",
+    "userId": "casino",
+    "placedAt": "2026-04-05T12:10:00Z",
+    "stake": 2700,
+    "gameId": "cg-betgames-classic-roulette"
+  },
+  {
+    "betId": "b-20018",
+    "userId": "casino",
+    "placedAt": "2026-04-17T13:15:00Z",
+    "stake": 3100,
+    "gameId": "cg-betgames-skyward"
+  },
+  {
+    "betId": "b-20019",
+    "userId": "casino",
+    "placedAt": "2026-05-02T15:25:00Z",
+    "stake": 3200,
+    "gameId": "cg-betgames-bet-on-baccarat"
+  },
+  {
+    "betId": "b-20020",
+    "userId": "both",
+    "placedAt": "2026-05-06T09:55:00Z",
+    "stake": 1700,
+    "gameId": "cg-crash-aviamasters-bgaming"
+  },
+  {
+    "betId": "b-20021",
+    "userId": "both",
+    "placedAt": "2026-05-07T13:20:00Z",
+    "stake": 1600,
+    "gameId": "cg-zama-fruits-lion"
+  },
+  {
+    "betId": "b-20022",
+    "userId": "both",
+    "placedAt": "2026-05-09T11:10:00Z",
+    "stake": 1800,
+    "gameId": "cg-betgames-penguin-rush"
+  },
+  {
+    "betId": "b-20023",
+    "userId": "both",
+    "placedAt": "2026-05-11T10:45:00Z",
+    "stake": 1650,
+    "gameId": "cg-slots-cash-volt"
+  },
+  {
+    "betId": "b-20024",
+    "userId": "both",
+    "placedAt": "2026-05-13T14:05:00Z",
+    "stake": 1750,
+    "gameId": "cg-betgames-dice-duel"
+  },
+  {
+    "betId": "b-20025",
+    "userId": "both",
+    "placedAt": "2026-05-08T17:00:00Z",
+    "stake": 2400,
+    "gameId": "cg-crash-aviajet-gamzix"
+  },
+  {
+    "betId": "b-20026",
+    "userId": "both",
+    "placedAt": "2026-05-12T12:35:00Z",
+    "stake": 2600,
+    "gameId": "cg-slots-sweet-rush-bonanza"
+  },
+  {
+    "betId": "b-20027",
+    "userId": "both",
+    "placedAt": "2026-05-14T18:20:00Z",
+    "stake": 2500,
+    "gameId": "cg-betgames-plinko"
+  },
+  {
+    "betId": "b-20028",
+    "userId": "casino",
+    "placedAt": "2026-05-16T10:10:00Z",
+    "stake": 2800,
+    "gameId": "cg-zama-fruits-buffalo"
+  }
+]

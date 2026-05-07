@@ -1,0 +1,540 @@
+[
+  {
+    "id": "cg-crash-aviator-spribe",
+    "name": "Aviator",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/01c43f5e-cb13-4118-ea98-25295bbbbc00/width=320,height=214",
+      "alt": "Aviator"
+    },
+    "url": "/en-ng/casino/game-launch/aviator-spribe",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-aviajet-gamzix",
+    "name": "Aviajet",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/0/03BA1093482541D5F41534A7DA52553B.jpg",
+      "alt": "Aviajet"
+    },
+    "url": "/en-ng/casino/game-launch/aviajet-gamzix",
+    "categoryId": "crash-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-crash-aviamasters-bgaming",
+    "name": "Aviamasters",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/9/931D38EABB38A53474D95E71E6E190A1.jpg",
+      "alt": "Aviamasters"
+    },
+    "url": "/en-ng/casino/game-launch/aviamasters-bgaming",
+    "categoryId": "crash-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-crash-danfo-lagos",
+    "name": "Danfo Lagos",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/7797a050-0948-4e25-1989-6bd3d6ef5000/width=320,height=214",
+      "alt": "Danfo Lagos"
+    },
+    "url": "/en-ng/casino/game-launch/crash-danfo-lagos",
+    "categoryId": "crash-casino",
+    "isExclusive": true
+  },
+  {
+    "id": "cg-crash-space-xy-bgaming",
+    "name": "Space XY",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/D/D36D7FE6461BEEECA1E74B377CB05B35.jpg",
+      "alt": "Space XY"
+    },
+    "url": "/en-ng/casino/game-launch/spacexy-bgaming",
+    "categoryId": "crash-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-crash-jetx-smartsoft",
+    "name": "JetX",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/b2bfdaef-9ab6-497f-fc44-ab8d31c34e00/width=320,height=214",
+      "alt": "JetX"
+    },
+    "url": "/en-ng/casino/game-launch/jetx-smartsoft",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-high-flyer-pragmaticplay",
+    "name": "High Flyer",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/A/AF3109D56A7D6C149856CD0C286EC485.jpg",
+      "alt": "High Flyer"
+    },
+    "url": "/en-ng/casino/game-launch/highflyer-pragmaticplay",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-chicken-highway-smartsoft",
+    "name": "Chicken Highway",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/3/364FDB5160DD810FBBFB24CCDF8F273F.jpg",
+      "alt": "Chicken Highway"
+    },
+    "url": "/en-ng/casino/game-launch/chickenhighway-smartsoft",
+    "categoryId": "crash-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-crash-comet",
+    "name": "Comet",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/3dc36f35-5f34-4db3-78d9-ba066e2b3300/width=320,height=214",
+      "alt": "Comet"
+    },
+    "url": "/en-ng/casino/game-launch/crashx-comet",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-exploding-ducks-splitthepot",
+    "name": "Exploding Ducks",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/375a0edb-aa0b-420b-dada-61c5617b8300/width=320,height=214",
+      "alt": "Exploding Ducks"
+    },
+    "url": "/en-ng/casino/game-launch/explodingducks-splitthepot",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-chicken-keke-betking",
+    "name": "Chicken Keke",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/043f53c6-1003-43a5-3c3f-a98b6c034e00/width=320,height=214",
+      "alt": "Chicken Keke"
+    },
+    "url": "/en-ng/casino/game-launch/chickenkeke-betking",
+    "categoryId": "crash-casino"
+  },
+  {
+    "id": "cg-crash-skyward-deluxe-betgames",
+    "name": "Skyward Deluxe",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/F/F8E26A92F5E6F771EF63167B9A449A19.jpg",
+      "alt": "Skyward Deluxe"
+    },
+    "url": "/en-ng/casino/game-launch/skywarddeluxe-betgames",
+    "categoryId": "crash-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-zama-fruits-buffalo",
+    "name": "Zama Fruits Buffalo",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/c5d04758-2e34-4ec7-3388-334f4661d200/width=320,height=214",
+      "alt": "Zama Fruits Buffalo"
+    },
+    "url": "/en-ng/casino/game-launch/buffalo-splitthepot",
+    "categoryId": "zama-fruits-promotion-casino"
+  },
+  {
+    "id": "cg-zama-fruits-lion",
+    "name": "Zama Fruits Lion",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/eccc377c-92ec-455e-ab92-36804220bf00/width=320,height=214",
+      "alt": "Zama Fruits Lion"
+    },
+    "url": "/en-ng/casino/game-launch/lion-splitthepot",
+    "categoryId": "zama-fruits-promotion-casino"
+  },
+  {
+    "id": "cg-zama-fruits-elephant",
+    "name": "Zama Fruits Elephant",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/fd6c034b-24c8-4bd1-40bf-5b1ce948b000/width=320,height=214",
+      "alt": "Zama Fruits Elephant"
+    },
+    "url": "/en-ng/casino/game-launch/elephant-splitthepot",
+    "categoryId": "zama-fruits-promotion-casino"
+  },
+  {
+    "id": "cg-zama-fruits-rhino",
+    "name": "Zama Fruits Rhino",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/b19f2f86-c78a-485e-e49d-32d1f2ac0000/width=320,height=214",
+      "alt": "Zama Fruits Rhino"
+    },
+    "url": "/en-ng/casino/game-launch/rhino-splitthepot",
+    "categoryId": "zama-fruits-promotion-casino"
+  },
+  {
+    "id": "cg-zama-fruits-leopard",
+    "name": "Zama Fruits Leopard",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/5b095dc1-cae3-491c-fcb5-7bfaefc38f00/width=320,height=214",
+      "alt": "Zama Fruits Leopard"
+    },
+    "url": "/en-ng/casino/game-launch/leopard-splitthepot",
+    "categoryId": "zama-fruits-promotion-casino"
+  },
+  {
+    "id": "cg-slots-sweet-rush-bonanza",
+    "name": "Sweet Rush Bonanza",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/7/719EE5E8E6845A7D2775CC0753A0E2D9.jpg",
+      "alt": "Sweet Rush Bonanza"
+    },
+    "url": "/en-ng/casino/game-launch/sweetrushbonanza-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-gates-of-olympus-super-scatter",
+    "name": "Gates of Olympus Super Scatter",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/ace86bca-0d4d-45ec-52a2-1870aa977200/width=320,height=214",
+      "alt": "Gates of Olympus Super Scatter"
+    },
+    "url": "/en-ng/casino/game-launch/gatesofolympussuperscatter-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-sweet-bonanza-super-scatter",
+    "name": "Sweet Bonanza Super Scatter",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/3d11b393-2986-4138-90ab-23c2404fdb00/width=320,height=214",
+      "alt": "Sweet Bonanza Super Scatter"
+    },
+    "url": "/en-ng/casino/game-launch/sweetbonanzasuperscatter-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-mahjong-wins-super-scatter",
+    "name": "Mahjong Wins Super Scatter",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/4/468F9E84802903F919B80FFDE0FC6DE8.jpg",
+      "alt": "Mahjong Wins Super Scatter"
+    },
+    "url": "/en-ng/casino/game-launch/mahjongwinssuperscatter-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-777-strike",
+    "name": "777 Strike",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/26c34ab5-f2d2-4bf8-bfc7-b2d72b038300/width=320,height=214",
+      "alt": "777 Strike"
+    },
+    "url": "/en-ng/casino/game-launch/777strike-redtiger",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-gonzos-quest-megaways",
+    "name": "Gonzo's Quest Megaways",
+    "image": {
+      "url": "https://kingmakersafrica.evo-games.com/tablePicture/gonzosqumegaways_med?size=XL",
+      "alt": "Gonzo's Quest Megaways"
+    },
+    "url": "/en-ng/casino/game-launch/gonzos-quest-megaways",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-cash-volt",
+    "name": "Cash Volt",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/f7532061-4263-419c-8540-7e99ac6ca200/width=320,height=214",
+      "alt": "Cash Volt"
+    },
+    "url": "/en-ng/casino/game-launch/cashvolt-redtiger",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-mystic-fortune-deluxe",
+    "name": "Mystic Fortune Deluxe",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/0/07D8757F449854F730EF67A7A9C4F528.jpg",
+      "alt": "Mystic Fortune Deluxe"
+    },
+    "url": "/en-ng/casino/game-launch/mysticfortunedeluxe-habanero",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-gates-of-olympus",
+    "name": "Gates of Olympus™",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/7b86ac38-07da-4008-3b34-9fd6918d5f00/width=320,height=214",
+      "alt": "Gates of Olympus™"
+    },
+    "url": "/en-ng/casino/game-launch/gatesofolympus-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-multi-hot-5",
+    "name": "Multi Hot 5",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/9/9081EFDC02A3DC9088E5A2747B355E5B.jpg",
+      "alt": "Multi Hot 5"
+    },
+    "url": "/en-ng/casino/game-launch/multi-hot-5-smartsoft",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-giga-hot-40",
+    "name": "Giga Hot 40",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/9/94517F151DE1C192AE4D8DAA487D00F5.jpg",
+      "alt": "Giga Hot 40"
+    },
+    "url": "/en-ng/casino/game-launch/gigahot40-fazi",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-slots-gates-of-olympus-1000",
+    "name": "Gates of Olympus 1000™",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/a1a0bdfc-73dd-41b2-d8a5-47f751f8cc00/width=320,height=214",
+      "alt": "Gates of Olympus 1000™"
+    },
+    "url": "/en-ng/casino/game-launch/gatesofolympus1000-pragmaticplay",
+    "categoryId": "slots-casino"
+  },
+  {
+    "id": "cg-betgames-skyward-deluxe",
+    "name": "Skyward Deluxe",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/F/F8E26A92F5E6F771EF63167B9A449A19.jpg",
+      "alt": "Skyward Deluxe"
+    },
+    "url": "/en-ng/casino/game-launch/skywarddeluxe-betgames",
+    "categoryId": "betgames-casino",
+    "isNew": true
+  },
+  {
+    "id": "cg-betgames-penguin-rush",
+    "name": "Penguin Rush",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/B/BE075818FAD315F731E646245BC9EB85.jpg",
+      "alt": "Penguin Rush"
+    },
+    "url": "/en-ng/casino/game-launch/penguinrush-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-classic-roulette",
+    "name": "Classic Roulette",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/F/FD0BE2AFEC54CEEEF098DE0094FA73DF.jpg",
+      "alt": "Classic Roulette"
+    },
+    "url": "/en-ng/casino/game-launch/classicroulette-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-plinko",
+    "name": "Plinko",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/4/415C5E02B8087CCD231A4419E9CDDC6E.jpg",
+      "alt": "Plinko"
+    },
+    "url": "/en-ng/casino/game-launch/plinko-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-bad-baboons-deluxe",
+    "name": "Bad Baboons Deluxe",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/9/9E33DB5C257967790D7A7615911FD775.jpg",
+      "alt": "Bad Baboons Deluxe"
+    },
+    "url": "/en-ng/casino/game-launch/badbaboonsdeluxe-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-feng-shui-fortune",
+    "name": "Feng Shui Fortune",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/9/948E49014CD1148FADD1B39A732AF99A.jpg",
+      "alt": "Feng Shui Fortune"
+    },
+    "url": "/en-ng/casino/game-launch/fengshuifortune-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-skyward",
+    "name": "Skyward",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/49297c01-8011-405f-5bf7-ad9ade715c00/width=320,height=214",
+      "alt": "Skyward"
+    },
+    "url": "/en-ng/casino/game-launch/skyward-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-classic-wheel",
+    "name": "Classic Wheel",
+    "image": {
+      "url": "https://static.everymatrix.com/cms2/base/_casino/5/58AA2B47E151EF14301086AB21CE39B5.jpg",
+      "alt": "Classic Wheel"
+    },
+    "url": "/en-ng/casino/game-launch/classicwheel-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-bet-on-baccarat",
+    "name": "Bet on Baccarat",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/169c5497-09da-4301-6cf1-972a97274300/width=320,height=214",
+      "alt": "Bet on Baccarat"
+    },
+    "url": "/en-ng/casino/game-launch/betonbaccarat-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-bet-on-poker",
+    "name": "Bet on Poker",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/d68d242b-4a1f-46d4-30a6-b985bebc9f00/width=320,height=214",
+      "alt": "Bet on Poker"
+    },
+    "url": "/en-ng/casino/game-launch/betonpoker-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-dice-duel",
+    "name": "Dice Duel",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/11f6f3ca-5ab9-44ed-1b71-65e6cb84d900/width=320,height=214",
+      "alt": "Dice Duel"
+    },
+    "url": "/en-ng/casino/game-launch/dice-duel",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "cg-betgames-6-poker",
+    "name": "+6 Poker",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/abb866ec-6edc-42f1-951c-9d5211b85d00/width=320,height=214",
+      "alt": "+6 Poker"
+    },
+    "url": "/en-ng/casino/game-launch/6poker-betgames",
+    "categoryId": "betgames-casino"
+  },
+  {
+    "id": "vg-scheduled-kings-league",
+    "name": "Kings League",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/cc52c2a5-3af4-4785-edec-61534623a800/public",
+      "alt": "scheduled-kings-league"
+    },
+    "url": "/en-ng/virtuals/scheduled/leagues/kings-league",
+    "categoryId": "scheduled-leagues-virtuals"
+  },
+  {
+    "id": "vg-scheduled-kings-liga",
+    "name": "Kings Liga",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/487faa7c-a7a6-4bc3-16f4-19cd64c84f00/public",
+      "alt": "scheduled-kings-liga"
+    },
+    "url": "/en-ng/virtuals/scheduled/leagues/kings-liga",
+    "categoryId": "scheduled-leagues-virtuals"
+  },
+  {
+    "id": "vg-scheduled-kings-champions-league",
+    "name": "Kings Champions League",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/85dbb730-3216-4b96-fc76-bce1887e1500/public",
+      "alt": "scheduled-kings-champions-league"
+    },
+    "url": "/en-ng/virtuals/scheduled/leagues/kings-champions-league",
+    "categoryId": "scheduled-leagues-virtuals"
+  },
+  {
+    "id": "vg-scheduled-kings-italiano",
+    "name": "Kings Italiano",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/742a2f15-6291-4fbd-6188-11bf67fa3a00/public",
+      "alt": "scheduled-kings-italiano"
+    },
+    "url": "/en-ng/virtuals/scheduled/leagues/kings-italiano",
+    "categoryId": "scheduled-leagues-virtuals"
+  },
+  {
+    "id": "vg-scheduled-kings-bundliga",
+    "name": "Kings Bundliga",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/23f03d72-1241-4a7a-2efa-f911dc152700/public",
+      "alt": "scheduled-kings-bundliga"
+    },
+    "url": "/en-ng/virtuals/scheduled/leagues/kings-bundliga",
+    "categoryId": "scheduled-leagues-virtuals"
+  },
+  {
+    "id": "vg-tournaments-kings-champions",
+    "name": "Kings Champions",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/cda64644-89e3-4f58-8779-4bd0c4d65f00/public",
+      "alt": "tournaments-kings-champions"
+    },
+    "url": "/en-ng/virtuals/scheduled/tournaments/kings-champions",
+    "categoryId": "scheduled-tournaments-virtuals",
+    "isNew": true
+  },
+  {
+    "id": "vg-tournaments-kings-afkon",
+    "name": "Kings Afkon",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/7b4f3ad6-aa2d-4bb6-030f-3217c9b29100/public",
+      "alt": "tournaments-kings-afkon"
+    },
+    "url": "/en-ng/virtuals/scheduled/tournaments/kings-afkon",
+    "categoryId": "scheduled-tournaments-virtuals"
+  },
+  {
+    "id": "vg-tournaments-kings-euro-kup",
+    "name": "Kings Euro Kup",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/2fed15e0-308c-433e-709b-9201c3f74200/public",
+      "alt": "tournaments-kings-euro-kup"
+    },
+    "url": "/en-ng/virtuals/scheduled/tournaments/kings-euro-kup",
+    "categoryId": "scheduled-tournaments-virtuals"
+  },
+  {
+    "id": "vg-instant-kings-instaleague",
+    "name": "Kings Instaleague",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/78089afd-3851-413c-2a43-837bd325c200/public",
+      "alt": "instant-kings-instaleague"
+    },
+    "url": "/en-ng/virtuals/instant/leagues/kings-instaleague",
+    "categoryId": "instant-leagues-virtuals"
+  },
+  {
+    "id": "vg-instant-kings-instaliga",
+    "name": "Kings Instaliga",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/317bdb89-e147-4e92-e346-ac42865fda00/public",
+      "alt": "instant-kings-instaliga"
+    },
+    "url": "/en-ng/virtuals/instant/leagues/kings-instaliga",
+    "categoryId": "instant-leagues-virtuals"
+  },
+  {
+    "id": "vg-instant-kings-instaitaliano",
+    "name": "Kings Instaitaliano",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/ca04849a-3e25-4eff-d0aa-0f7b12267b00/public",
+      "alt": "instant-kings-instaitaliano"
+    },
+    "url": "/en-ng/virtuals/instant/leagues/kings-instaitaliano",
+    "categoryId": "instant-leagues-virtuals"
+  },
+  {
+    "id": "vg-instant-kings-instabundliga",
+    "name": "Kings Instabundliga",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/f9637876-15b2-4050-991c-21d9eb359f00/public",
+      "alt": "instant-kings-instabundliga"
+    },
+    "url": "/en-ng/virtuals/instant/leagues/kings-instabundliga",
+    "categoryId": "instant-leagues-virtuals"
+  }
+]
