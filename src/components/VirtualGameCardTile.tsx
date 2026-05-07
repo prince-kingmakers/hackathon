@@ -16,11 +16,11 @@ const VirtualGameCardTile = ({ item, nowMs }: VirtualGameCardTileProps) => {
   return (
     <Link
       href={item.url}
-      className={`recently-played-card ${gameClass} relative block min-h-[100px] overflow-hidden rounded-xl text-white outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-bk-backdrop`}
+      className={`recently-played-card ${gameClass} relative block min-h-[80px] lg:min-h-[100px] overflow-hidden rounded-xl text-white outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-bk-backdrop`}
     >
       {badge ? <BadgeChip label={badge} /> : null}
 
-      <div className="relative h-[70px] w-full">
+      <div className="relative h-[50px] lg:h-[70px] w-full">
         <Image
           src={item.image.url}
           alt={item.image.alt}

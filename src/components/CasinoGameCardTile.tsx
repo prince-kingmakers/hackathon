@@ -14,7 +14,7 @@ const CasinoGameCardTile = ({ item }: CasinoGameCardTileProps) => {
   return (
     <Link
       href={item.url}
-      className={`recently-played-card ${gameClass} relative block h-[130px] overflow-hidden rounded-xl text-white outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-bk-backdrop`}
+      className={`recently-played-card ${gameClass} relative block h-[100px] lg:h-[130px] overflow-hidden rounded-xl text-white outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-bk-backdrop`}
     >
       {badge ? <BadgeChip label={badge} /> : null}
       <Image

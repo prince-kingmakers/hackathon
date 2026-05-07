@@ -53,8 +53,8 @@ const RecentlyPlayedRail = ({ items }: RecentlyPlayedRailProps) => {
                 key={item.id}
                 className={`embla__slide min-w-0 shrink-0 grow-0 ${
                   item.kind === "casino"
-                    ? "basis-[180px] flex-[0_0_180px]"
-                    : "basis-[250px] flex-[0_0_250px]"
+                    ? "basis-[120px] flex-[0_0_120px] lg:basis-[180px] lg:flex-[0_0_180px]"
+                    : "basis-[150px] flex-[0_0_150px] lg:basis-[250px] lg:flex-[0_0_250px]"
                 }`}
               >
                 <GameCardTile item={item} nowMs={nowMs} />
