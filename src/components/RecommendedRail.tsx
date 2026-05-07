@@ -1,13 +1,16 @@
 "use client";
 
 import GameCardTile from "@/components/GameCardTile";
-import type { GameTile } from "@/types/personalization";
+import PromotionCardTile from "@/components/PromotionCardTile";
+import { railSlideClassForHomeItem } from "@/components/gameCardTileShared";
+import type { GameTile, HomeRailItem, HomeSliceVertical } from "@/types/personalization";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
 
 type RecommendedRailProps = {
-  items: GameTile[];
+  items: HomeRailItem[];
   recentlyPlayed: GameTile[];
+  vertical: HomeSliceVertical;
 };
 
 const recommendedHeading = (recentlyPlayed: GameTile[]) => {
@@ -18,7 +21,7 @@ const recommendedHeading = (recentlyPlayed: GameTile[]) => {
   return `We see your ${name} vibe, try these`;
 };
 
-const RecommendedRail = ({ items, recentlyPlayed }: RecommendedRailProps) => {
+const RecommendedRail = ({ items, recentlyPlayed, vertical }: RecommendedRailProps) => {
   const [emblaRef] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -53,14 +56,18 @@ const RecommendedRail = ({ items, recentlyPlayed }: RecommendedRailProps) => {
           <div className="embla__container flex gap-3">
             {items.map((item) => (
               <div
-                key={item.id}
-                className={`embla__slide min-w-0 shrink-0 grow-0 ${
-                  item.kind === "casino"
-                    ? "basis-[120px] flex-[0_0_120px] lg:basis-[180px] lg:flex-[0_0_180px]"
-                    : "basis-[150px] flex-[0_0_150px] lg:basis-[250px] lg:flex-[0_0_250px]"
-                }`}
+                key={item.kind === "promotion" ? `promo-${item.id}` : item.id}
+                className={`embla__slide min-w-0 shrink-0 grow-0 ${railSlideClassForHomeItem(item)}`}
               >
-                <GameCardTile item={item} nowMs={nowMs} />
+                {item.kind === "promotion" ? (
+                  <PromotionCardTile
+                    image={item.image}
+                    href={item.url}
+                    vertical={vertical}
+                  />
+                ) : (
+                  <GameCardTile item={item} nowMs={nowMs} />
+                )}
               </div>
             ))}
           </div>

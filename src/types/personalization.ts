@@ -56,16 +56,29 @@ export type VirtualGameTile = GameTileBase & {
 
 export type GameTile = CasinoGameTile | VirtualGameTile;
 
+export type HomeSliceVertical = VerticalRecord["id"];
+
+export type PromotionRailItem = {
+  kind: "promotion";
+  id: string;
+  image: GameImage;
+  url: string;
+};
+
+export type HomeRailItem = GameTile | PromotionRailItem;
+
 export type CategoryByStakeRow = {
+  categoryId: string;
   name: string;
   description?: string;
-  items: GameTile[];
+  items: HomeRailItem[];
 };
 
 export type PersonalizedHomeFeedSlice = {
   id: UserPersona;
+  vertical: HomeSliceVertical;
   recentlyPlayed: GameTile[];
   categoriesByStake: CategoryByStakeRow[];
-  recommendedNotPlayed?: GameTile[];
+  recommendedNotPlayed?: HomeRailItem[];
   exploreNewVertical?: GameTile[];
 };

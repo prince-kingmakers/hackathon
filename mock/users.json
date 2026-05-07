@@ -2,16 +2,39 @@
   {
     "userId": "casino",
     "balance": 12450.75,
-    "firstName": "Chinedu"
+    "firstName": "Chinedu",
+    "promotions": [
+      "promo-zama-fruits",
+      "promo-black-friday-aviator-rain",
+      "promo-comet-cosmic-rush",
+      "promo-chicken-keke",
+      "promo-danfo-lagos",
+      "promo-all-games",
+      "promo-gates-of-olympus",
+      "promo-casino-feature"
+    ]
   },
   {
     "userId": "virtuals",
     "balance": 8320.5,
-    "firstName": "Amina"
+    "firstName": "Amina",
+    "promotions": ["promo-virtuals-all", "promo-virtuals-feature"]
   },
   {
     "userId": "both",
     "balance": 50200,
-    "firstName": "Oluwaseun"
+    "firstName": "Oluwaseun",
+    "promotions": [
+      "promo-zama-fruits",
+      "promo-black-friday-aviator-rain",
+      "promo-comet-cosmic-rush",
+      "promo-chicken-keke",
+      "promo-danfo-lagos",
+      "promo-virtuals-all",
+      "promo-virtuals-feature",
+      "promo-all-games",
+      "promo-gates-of-olympus",
+      "promo-casino-feature"
+    ]
   }
 ]

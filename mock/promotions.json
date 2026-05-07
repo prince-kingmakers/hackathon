@@ -1,0 +1,82 @@
+[
+  {
+    "id": "promo-zama-fruits",
+    "categoryId": "zama-fruits-promotion-casino",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/77cbc0fd-35c8-438a-1f2f-e6975b727e00/height=140",
+      "alt": "Zama Fruits"
+    }
+  },
+  {
+    "id": "promo-black-friday-aviator-rain",
+    "gameId": "cg-crash-aviator-spribe",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/2702a062-af8e-48f0-3a04-5651842abb00/height=140",
+      "alt": "Black Friday Aviator Rain"
+    }
+  },
+  {
+    "id": "promo-comet-cosmic-rush",
+    "gameId": "cg-crash-comet",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/53516744-9f43-41f3-11ff-4e1e512df400/height=140",
+      "alt": "Comet Cosmic Rush"
+    }
+  },
+  {
+    "id": "promo-chicken-keke",
+    "gameId": "cg-crash-chicken-keke-betking",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/f3fd0488-8c2f-4c21-6cf2-0fcb1424b400/height=140",
+      "alt": "Chicken Keke"
+    }
+  },
+  {
+    "id": "promo-danfo-lagos",
+    "gameId": "cg-crash-danfo-lagos",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/deab1ba1-630a-4b4f-080b-f931b4b89600/height=140",
+      "alt": "Danfo Lagos"
+    }
+  },
+  {
+    "id": "promo-virtuals-all",
+    "verticalId": "virtuals",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/88e709bb-f3d0-4834-15ef-9d9a87ae9800/height=140",
+      "alt": "All virtuals promotion"
+    }
+  },
+  {
+    "id": "promo-virtuals-feature",
+    "verticalId": "virtuals",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/8b022f4c-804c-4361-0fbd-6d936ccd9e00/height=140",
+      "alt": "Virtuals promotion"
+    }
+  },
+  {
+    "id": "promo-all-games",
+    "verticalId": "casino",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/3dd04d70-759b-4d05-dac2-1d3ddb2b2400/height=140",
+      "alt": "All Games promotion"
+    }
+  },
+  {
+    "id": "promo-gates-of-olympus",
+    "gameId": "cg-slots-gates-of-olympus",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/e8897eca-c41d-4f06-ba4f-66a368056e00/height=140",
+      "alt": "Gates of Olympus"
+    }
+  },
+  {
+    "id": "promo-casino-feature",
+    "verticalId": "casino",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/675308fb-6d47-4a82-367a-3158b0b88600/height=140",
+      "alt": "Casino promotion"
+    }
+  }
+]

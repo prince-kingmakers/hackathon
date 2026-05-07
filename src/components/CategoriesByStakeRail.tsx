@@ -1,7 +1,9 @@
 "use client";
 
 import GameCardTile from "@/components/GameCardTile";
-import type { CategoryByStakeRow } from "@/types/personalization";
+import PromotionCardTile from "@/components/PromotionCardTile";
+import { railSlideClassForHomeItem } from "@/components/gameCardTileShared";
+import type { CategoryByStakeRow, HomeSliceVertical } from "@/types/personalization";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
 
@@ -10,9 +12,10 @@ const MAX_VISIBLE_ITEMS = 5;
 type CategoryStakeRowProps = {
   row: CategoryByStakeRow;
   nowMs: number;
+  vertical: HomeSliceVertical;
 };
 
-const CategoryStakeRow = ({ row, nowMs }: CategoryStakeRowProps) => {
+const CategoryStakeRow = ({ row, nowMs, vertical }: CategoryStakeRowProps) => {
   const [emblaRef] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -47,14 +50,18 @@ const CategoryStakeRow = ({ row, nowMs }: CategoryStakeRowProps) => {
           <div className="embla__container flex gap-3">
             {visibleItems.map((item) => (
               <div
-                key={item.id}
-                className={`embla__slide min-w-0 shrink-0 grow-0 ${
-                  item.kind === "casino"
-                    ? "basis-[120px] flex-[0_0_120px] lg:basis-[180px] lg:flex-[0_0_180px]"
-                    : "basis-[150px] flex-[0_0_150px] lg:basis-[250px] lg:flex-[0_0_250px]"
-                }`}
+                key={item.kind === "promotion" ? `promo-${item.id}` : item.id}
+                className={`embla__slide min-w-0 shrink-0 grow-0 ${railSlideClassForHomeItem(item)}`}
               >
-                <GameCardTile item={item} nowMs={nowMs} />
+                {item.kind === "promotion" ? (
+                  <PromotionCardTile
+                    image={item.image}
+                    href={item.url}
+                    vertical={vertical}
+                  />
+                ) : (
+                  <GameCardTile item={item} nowMs={nowMs} />
+                )}
               </div>
             ))}
           </div>
@@ -66,9 +73,10 @@ const CategoryStakeRow = ({ row, nowMs }: CategoryStakeRowProps) => {
 
 type CategoriesByStakeRailProps = {
   rows: CategoryByStakeRow[];
+  vertical: HomeSliceVertical;
 };
 
-const CategoriesByStakeRail = ({ rows }: CategoriesByStakeRailProps) => {
+const CategoriesByStakeRail = ({ rows, vertical }: CategoriesByStakeRailProps) => {
   const [nowMs, setNowMs] = useState(() => Date.now());
 
   useEffect(() => {
@@ -88,7 +96,7 @@ const CategoriesByStakeRail = ({ rows }: CategoriesByStakeRailProps) => {
   return (
     <section className="mt-1 px-3 pb-6 md:px-0">
       {visibleRows.map((row) => (
-        <CategoryStakeRow key={row.name} row={row} nowMs={nowMs} />
+        <CategoryStakeRow key={row.categoryId} row={row} nowMs={nowMs} vertical={vertical} />
       ))}
     </section>
   );

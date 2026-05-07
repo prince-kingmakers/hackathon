@@ -36,10 +36,11 @@ const FeedRails = ({
         {verticalLabel(slice.id)} fan!
       </h1>
       <RecentlyPlayedRail items={slice.recentlyPlayed ?? []} />
-      <CategoriesByStakeRail rows={slice.categoriesByStake ?? []} />
+      <CategoriesByStakeRail rows={slice.categoriesByStake ?? []} vertical={slice.vertical} />
       <RecommendedRail
         items={slice.recommendedNotPlayed ?? []}
         recentlyPlayed={slice.recentlyPlayed ?? []}
+        vertical={slice.vertical}
       />
       <ExploreNewVerticalRail items={slice.exploreNewVertical ?? []} />
     </>

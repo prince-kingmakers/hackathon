@@ -24,5 +24,6 @@ export const getUserDetailsById = (id: string | undefined): UserDetails => {
     userId: match.userId,
     balance: match.balance,
     firstName: match.firstName,
+    promotions: match.promotions,
   };
 };

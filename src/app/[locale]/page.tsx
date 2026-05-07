@@ -46,7 +46,7 @@ export default async function Home(props: HomePageProps) {
   const navigationItems = (await navRes.json()) as NavigationMenuItem[];
   const user = (await userRes.json()) as UserDetails;
   const personalizedFeed = (await personalizedFeedRes.json()) as PersonalizedHomeFeedSlice[];
-  console.log(personalizedFeed);
+  console.log(personalizedFeed)
   return (
     <div className="flex min-h-screen flex-col bg-bk-page-bg">
       <AppNavigation

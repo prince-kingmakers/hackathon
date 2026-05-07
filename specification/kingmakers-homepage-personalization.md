@@ -64,6 +64,8 @@ Wallet balance is shown in the header alongside the profile entry point.
 
 Editorial promotional cards that apply to **all** users — these are **not** personalized. They appear in a horizontal carousel.
 
+Banners are editorial advertising; user-eligible **promotions** are modeled separately in [`promotions.json`](#promotionsjson-expected-fields) and surfaced via `getUserDetails`.
+
 ### 3. Recently played
 
 Up to **5** virtuals and/or casino titles the user has played most recently. Anything beyond the top 5 surfaces through [Categories sorted by stake](#4-categories-sorted-by-stake).
@@ -148,7 +150,7 @@ In this prototype, all four endpoints live under a dynamic Next.js locale segmen
 - Route: `GET /{locale}/bff/user-details?id={persona}` (e.g. `/en-ng/bff/user-details?id=casino`)
 - `{locale}` is a dynamic Next.js segment (`src/app/[locale]/bff/user-details/route.ts`); no allow-list yet
 - Query param: **`id`** (optional) — one of **`casino`** | **`virtuals`** | **`both`**. Missing or unknown values fall back to **`casino`**.
-- Response (`UserDetails`): `{ userId: "casino" | "virtuals" | "both"; balance: number }`
+- Response (`UserDetails`): `{ userId: "casino" | "virtuals" | "both"; balance: number; firstName: string; promotions: string[] }`. **`promotions`** is a list of promotion IDs assigned to the user; full promotion records live in `promotions.json` (see [Source JSON architecture](#source-json-architecture-for-personalization)).
 - Source: `mock/users.json` via `getUserDetailsById` (`src/lib/mock-users.ts`)
 - Caching: `force-dynamic` on the route; called with `cache: "no-store"` from the homepage server component (`src/app/[locale]/page.tsx`)
 
@@ -187,7 +189,7 @@ One endpoint, **`getPersonalizedHomeFeed`**, returns personalized rails **exclud
 #### Current implementation increment (this prototype step)
 
 - Route: `GET /{locale}/bff/personalized-home-feed?id={persona}`
-- Response currently includes one slice with `id` and `recentlyPlayed` only:
+- The response is **non-exhaustive** in the example below: the prototype returns additional rails (e.g. `categoriesByStake`, `recommendedNotPlayed`, `exploreNewVertical`) when applicable.
 
 ```json
 [
@@ -216,9 +218,21 @@ Field names are logical; JSON keys follow platform standards.
 | Field | Description |
 |-------|-------------|
 | `recentlyPlayed` | Tiles the user has played; **casino** vs **virtuals** per tagged union or parallel lists (implementation choice). |
-| `categoriesByStake` | Array of `{ name, description, items[] }`; for **virtuals** categories `description` is required, for **casino** categories it is optional. **`items`** use [tile shapes](#tile-shapes). Sorted/limited **server-side**. |
+| `categoriesByStake` | Array of `{ categoryId, name, description, items[] }`; **`categoryId`** matches `categories.json` and is used server-side when inserting promotion tiles next to the matching stake-sorted row. For **virtuals** categories `description` is required, for **casino** categories it is optional. **`items`** use [tile shapes](#tile-shapes). Sorted/limited **server-side**. |
 | `recommendedNotPlayed` | **Same structure as `recentlyPlayed`** for the **same vertical** as this slice; omit section if empty. |
 | `exploreNewVertical` | Same tile shapes as **`recentlyPlayed`**; cross-sell **opposite** vertical. **Omitted entirely server-side** for users who play **both** verticals. |
+
+#### Promotion tiles in category and recommended rails
+
+Mixed **`items`** arrays may contain game tiles and **`kind: "promotion"`** tiles (see [Tile shapes](#tile-shapes)). Rules below are **server-side** for this prototype.
+
+- **Eligibility:** Only promotion IDs assigned to the user (`UserDetails.promotions` / `users.json`) are candidates; full records come from `promotions.json`.
+- **`categoriesByStake` rows:** When padding **`categoriesByStake[*].items`**, prefer promotions that belong to **that row’s category** before broader matches:
+  - **Phase A:** `promotion.categoryId` equals the row’s **`categoryId`**, or `promotion.gameId` resolves to a game whose **`categoryId`** equals the row’s category.
+  - **Phase B:** Any remaining user-eligible promotion that still matches the slice **vertical** (via `verticalId`, or game/category resolved to a vertical).
+- **`recommendedNotPlayed`:** There is no single category context — use **vertical-aligned** promotion selection only (same as Phase B above).
+- **Caps:** At most **3** promotion tiles per rail after padding. Target length is **`min(MAX_ITEMS_PER_RAIL, initialGameTileCount + 3)`**, where **`MAX_ITEMS_PER_RAIL`** is **5** for both category rows and recommended (e.g. **1** game tile → up to **3** promos → **4** items total; **2** game tiles → up to **3** promos → **5** items total when the cap allows).
+- **Dedup:** Within one feed slice (one tab), each promotion **`id`** appears **at most once** across padded rails (`recentlyPlayed` is games-only; dedup applies wherever promotion tiles are mixed into rails).
 
 ### Client assumptions
 
@@ -232,6 +246,7 @@ For maintainability, personalization data is split into small domain files and c
 - `categories.json` — category catalog keyed to verticals
 - `games.json` — canonical game catalog keyed to categories
 - `bets.json` — user betting events that link users to games
+- `promotions.json` — promotion catalog; user records carry assigned promotion IDs
 
 The BFF joins these sources and emits the tabbed rails payload in [Response shape: tabbed vertical payloads](#response-shape-tabbed-vertical-payloads).
 
@@ -339,6 +354,32 @@ Notes:
 - Required: `betId`, `userId`, `placedAt`, `stake`, `gameId`
 - `userId` links to the persona/user from user-details source.
 - `gameId` links to a record in `games.json`.
+
+##### `promotions.json`: expected fields
+
+`id` and **`image`** are **required**. **`image`** follows the [global image shape](#images): `{ url, alt }`. At least one of `gameId`, `categoryId`, or `verticalId` should be set so the promotion has a target.
+
+```json
+[
+  {
+    "id": "promo-zama-fruits",
+    "categoryId": "zama-fruits-promotion-casino",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/77cbc0fd-35c8-438a-1f2f-e6975b727e00/height=140",
+      "alt": "Zama Fruits"
+    }
+  }
+]
+```
+
+Notes:
+
+- Required: `id`, `image` (`{ url, alt }` — see [Images](#images))
+- Optional targets: `gameId`, `categoryId`, `verticalId` — multiple may be set
+- **Resolution priority** when a consumer needs a single target: prefer **`gameId`**; if unset, use **`categoryId`**; if unset, use **`verticalId`**
+- `gameId` must match an `id` in `games.json`; `categoryId` in `categories.json`; `verticalId` in `verticals.json`
+- Users are linked to promotions via `users.json` `promotions: string[]` (IDs); the resolved list is surfaced on `getUserDetails`
+- **Personalized feed:** **`categoryId`** and **`gameId`** on a promotion let the server place tiles **next to the matching stake-sorted category row** (Phase A); promotions that only set **`verticalId`** are used as filler after category-scoped matches when padding (Phase B). See [Promotion tiles in category and recommended rails](#promotion-tiles-in-category-and-recommended-rails).
 
 ---
 

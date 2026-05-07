@@ -1,29 +1,35 @@
 import betsData from "../../mock/bets.json";
 import categoriesData from "../../mock/categories.json";
 import gamesData from "../../mock/games.json";
+import promotionsData from "../../mock/promotions.json";
 import verticalsData from "../../mock/verticals.json";
-import { DEFAULT_ID } from "@/lib/mock-users";
+import { DEFAULT_ID, getUserDetailsById } from "@/lib/mock-users";
 import type {
   BetRecord,
   CategoryByStakeRow,
   CategoryRecord,
   GameRecord,
   GameTile,
+  HomeRailItem,
   PersonalizedHomeFeedSlice,
+  PromotionRailItem,
   VerticalRecord,
 } from "@/types/personalization";
+import type { Promotion } from "@/types/promotion";
 import type { UserPersona } from "@/types/user";
 
 const MAX_RECENTLY_PLAYED = 5;
 const MAX_CATEGORIES_BY_STAKE_ROWS = 2;
 const MAX_CATEGORIES_BY_STAKE_ITEMS = 5;
 const MAX_RECOMMENDED_NOT_PLAYED = 5;
+const MAX_PROMOTION_TILES_PER_RAIL = 3;
 const MAX_EXPLORE_NEW_VERTICAL = 5;
 const MAX_VIRTUAL_ROUND_AHEAD_MS = 2 * 60 * 1000;
 
 const bets = betsData as BetRecord[];
 const categories = categoriesData as CategoryRecord[];
 const games = gamesData as GameRecord[];
+const promotionsCatalog = promotionsData as Promotion[];
 const verticals = verticalsData as VerticalRecord[];
 
 const isPersona = (value: string): value is UserPersona =>
@@ -37,6 +43,8 @@ const resolvePersona = (id: string | undefined): UserPersona => {
 const categoriesById = new Map(categories.map((category) => [category.id, category]));
 const gamesById = new Map(games.map((game) => [game.id, game]));
 const verticalIds = new Set(verticals.map((vertical) => vertical.id));
+
+type SliceVertical = VerticalRecord["id"];
 
 const createVirtualRoundTime = () =>
   new Date(Date.now() + Math.floor(Math.random() * MAX_VIRTUAL_ROUND_AHEAD_MS)).toISOString();
@@ -162,6 +170,7 @@ const toCategoryByStakeRows = (
         .slice(0, MAX_CATEGORIES_BY_STAKE_ITEMS);
 
       return {
+        categoryId: category.id,
         name: category.name,
         description: category.description,
         items,
@@ -169,8 +178,6 @@ const toCategoryByStakeRows = (
     })
     .filter((category) => category.items.length > 0);
 };
-
-type SliceVertical = VerticalRecord["id"];
 
 const resolveGameVertical = (gameId: string): SliceVertical | null => {
   const game = gamesById.get(gameId);
@@ -185,6 +192,152 @@ const resolveGameVertical = (gameId: string): SliceVertical | null => {
 
   return category.verticalId;
 };
+
+const promotionMatchesVertical = (promo: Promotion, vertical: SliceVertical): boolean => {
+  if (promo.verticalId) {
+    return promo.verticalId === vertical;
+  }
+  if (promo.gameId) {
+    return resolveGameVertical(promo.gameId) === vertical;
+  }
+  if (promo.categoryId) {
+    const cat = categoriesById.get(promo.categoryId);
+    return cat?.verticalId === vertical;
+  }
+  return false;
+};
+
+const promotionMatchesCategory = (promo: Promotion, categoryId: string): boolean => {
+  if (promo.categoryId) {
+    return promo.categoryId === categoryId;
+  }
+  if (promo.gameId) {
+    return gamesById.get(promo.gameId)?.categoryId === categoryId;
+  }
+  return false;
+};
+
+const resolvePromotionUrl = (promo: Promotion): string | null => {
+  if (promo.gameId) {
+    return gamesById.get(promo.gameId)?.url ?? null;
+  }
+  if (promo.categoryId) {
+    const firstInCategory = games.find((g) => g.categoryId === promo.categoryId);
+    return firstInCategory?.url ?? null;
+  }
+  if (promo.verticalId === "virtuals") {
+    return "/en-ng/virtuals";
+  }
+  if (promo.verticalId === "casino") {
+    return "/en-ng/games";
+  }
+  return null;
+};
+
+const toPromotionRailItem = (promo: Promotion): PromotionRailItem | null => {
+  const url = resolvePromotionUrl(promo);
+  if (!url) {
+    return null;
+  }
+  return {
+    kind: "promotion",
+    id: promo.id,
+    image: promo.image,
+    url,
+  };
+};
+
+const takeNextPromotionRailItem = (
+  usedPromoIds: Set<string>,
+  vertical: SliceVertical,
+  userPromoIds: Set<string>,
+  rowCategoryId?: string,
+): PromotionRailItem | null => {
+  const tryTake = (categoryPhase: boolean): PromotionRailItem | null => {
+    for (const promo of promotionsCatalog) {
+      if (!userPromoIds.has(promo.id)) {
+        continue;
+      }
+      if (usedPromoIds.has(promo.id)) {
+        continue;
+      }
+      if (!promotionMatchesVertical(promo, vertical)) {
+        continue;
+      }
+      if (categoryPhase) {
+        if (!rowCategoryId || !promotionMatchesCategory(promo, rowCategoryId)) {
+          continue;
+        }
+      }
+      const item = toPromotionRailItem(promo);
+      if (!item) {
+        continue;
+      }
+      usedPromoIds.add(promo.id);
+      return item;
+    }
+    return null;
+  };
+
+  if (rowCategoryId) {
+    const categoryFirst = tryTake(true);
+    if (categoryFirst) {
+      return categoryFirst;
+    }
+  }
+
+  return tryTake(false);
+};
+
+const countPromotionTiles = (items: HomeRailItem[]) =>
+  items.filter((item) => item.kind === "promotion").length;
+
+const padRailItems = (
+  items: HomeRailItem[],
+  maxRail: number,
+  vertical: SliceVertical,
+  userPromoIds: Set<string>,
+  usedPromoIds: Set<string>,
+  rowCategoryId?: string,
+): HomeRailItem[] => {
+  const gameTileCount = items.filter((item) => item.kind !== "promotion").length;
+  const targetLength = Math.min(maxRail, gameTileCount + MAX_PROMOTION_TILES_PER_RAIL);
+  const result = [...items];
+  while (
+    result.length < targetLength &&
+    countPromotionTiles(result) < MAX_PROMOTION_TILES_PER_RAIL
+  ) {
+    const next = takeNextPromotionRailItem(
+      usedPromoIds,
+      vertical,
+      userPromoIds,
+      rowCategoryId,
+    );
+    if (!next) {
+      break;
+    }
+    result.push(next);
+  }
+  return result;
+};
+
+const padCategoryRows = (
+  rows: CategoryByStakeRow[],
+  vertical: SliceVertical,
+  userPromoIds: Set<string>,
+  usedPromoIds: Set<string>,
+): CategoryByStakeRow[] =>
+  rows.map((row) => ({
+    ...row,
+    items: padRailItems(
+      row.items,
+      MAX_CATEGORIES_BY_STAKE_ITEMS,
+      vertical,
+      userPromoIds,
+      usedPromoIds,
+      row.categoryId,
+    ),
+  }));
 
 const resolveVerticalOrder = (persona: UserPersona): SliceVertical[] => {
   if (persona === "casino" || persona === "virtuals") {
@@ -298,13 +451,29 @@ export const getPersonalizedHomeFeed = (
     vertical: SliceVertical,
     includeExploreNewVertical: boolean,
   ): PersonalizedHomeFeedSlice => {
+    const userPromoIds = new Set(getUserDetailsById(id).promotions);
+    const usedPromoIds = new Set<string>();
+
     const recentlyPlayedGames = getUniqueRecentGames(persona, vertical);
     const excludedGameIds = new Set(recentlyPlayedGames.map((game) => game.id));
-    const categoriesByStake = toCategoryByStakeRows(persona, excludedGameIds, vertical);
-    const recommendedNotPlayed = toRecommendedNotPlayed(persona, vertical);
+    const categoriesByStake = padCategoryRows(
+      toCategoryByStakeRows(persona, excludedGameIds, vertical),
+      vertical,
+      userPromoIds,
+      usedPromoIds,
+    );
+    let recommendedNotPlayed: HomeRailItem[] = toRecommendedNotPlayed(persona, vertical);
+    recommendedNotPlayed = padRailItems(
+      recommendedNotPlayed,
+      MAX_RECOMMENDED_NOT_PLAYED,
+      vertical,
+      userPromoIds,
+      usedPromoIds,
+    );
 
     const slice: PersonalizedHomeFeedSlice = {
       id: sliceId,
+      vertical,
       recentlyPlayed: recentlyPlayedGames
         .map((game) => toGameTile(game))
         .filter((tile): tile is GameTile => Boolean(tile)),
