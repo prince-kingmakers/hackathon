@@ -1,0 +1,22 @@
+[
+  {
+    "id": "nav-sports",
+    "name": "Sports",
+    "url": "/en-ng/sports"
+  },
+  {
+    "id": "nav-casino",
+    "name": "Casino",
+    "url": "/en-ng/casino"
+  },
+  {
+    "id": "nav-virtuals",
+    "name": "Virtuals",
+    "url": "/en-ng/virtuals"
+  },
+  {
+    "id": "nav-promotions",
+    "name": "Promotions",
+    "url": "/en-ng/promotions"
+  }
+]

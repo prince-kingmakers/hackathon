@@ -1,0 +1,34 @@
+[
+  {
+    "id": "banner-chicken-keke-launch",
+    "url": "/en-ng/casino/game-launch/chickenkeke-betking?freePlay=false&subcategory=none&game_id=gmf%3Abetking-chicken-keke&ic_source=internal&ic_medium=banner&ic_campaign=NG-ck&ic_content=NG-ck-mob&ic_referrer=hero_banner",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/2f30c0c0-12d3-4b0b-f781-6b0dd90e8900/height=140",
+      "alt": "Chicken Keke - Game Launch"
+    }
+  },
+  {
+    "id": "banner-match-1up",
+    "url": "/en-ng/sports/prematch/1004204588/nottingham-aston-villa?ic_source=internal&ic_medium=banner&ic_campaign=NG-1up-ms-07-05&ic_content=NG-1up-ms-07-05&ic_referrer=hero_banner",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/6da9b713-e3c8-44b2-7297-b9c8ec008800/height=140",
+      "alt": "Match Specific 1UP - 7"
+    }
+  },
+  {
+    "id": "banner-zama-fruits",
+    "url": "/en-ng/promotions/games/zama-fruit-games?ic_source=internal&ic_medium=banner&ic_campaign=NG-zama-fruits&ic_content=NG-zama-fruits&ic_referrer=hero_banner",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/77cbc0fd-35c8-438a-1f2f-e6975b727e00/height=140",
+      "alt": "Zama Friuts"
+    }
+  },
+  {
+    "id": "banner-virtuals-htup",
+    "url": "/en-ng/virtuals",
+    "image": {
+      "url": "https://imagedelivery.net/Vd-cIddpsfJ7XHHMXJuIbA/11af9700-3711-46d5-f39f-fd7563d15900/height=140",
+      "alt": "Virtuals HTUP"
+    }
+  }
+]
