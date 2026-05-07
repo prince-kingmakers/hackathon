@@ -1,9 +1,6 @@
 import AppNavigation from "@/components/AppNavigation";
 import BannerCarousel from "@/components/BannerCarousel";
-import CategoriesByStakeRail from "@/components/CategoriesByStakeRail";
-import ExploreNewVerticalRail from "@/components/ExploreNewVerticalRail";
-import RecentlyPlayedRail from "@/components/RecentlyPlayedRail";
-import RecommendedRail from "@/components/RecommendedRail";
+import PersonalizedHomeFeedTabs from "@/components/PersonalizedHomeFeedTabs";
 import { DEFAULT_ID } from "@/lib/mock-users";
 import type { BannerItem } from "@/types/banners";
 import type { NavigationMenuItem } from "@/types/navigation";
@@ -49,11 +46,7 @@ export default async function Home(props: HomePageProps) {
   const navigationItems = (await navRes.json()) as NavigationMenuItem[];
   const user = (await userRes.json()) as UserDetails;
   const personalizedFeed = (await personalizedFeedRes.json()) as PersonalizedHomeFeedSlice[];
-  const recentlyPlayed = personalizedFeed[0]?.recentlyPlayed ?? [];
-  const categoriesByStake = personalizedFeed[0]?.categoriesByStake ?? [];
-  const recommendedNotPlayed = personalizedFeed[0]?.recommendedNotPlayed ?? [];
-  const exploreNewVertical = personalizedFeed[0]?.exploreNewVertical ?? [];
-
+  console.log(personalizedFeed);
   return (
     <div className="flex min-h-screen flex-col bg-bk-page-bg">
       <AppNavigation
@@ -65,10 +58,7 @@ export default async function Home(props: HomePageProps) {
       />
       <main className="lg:w-[1200px] w-full mx-auto">
         <BannerCarousel banners={banners} />
-        <RecentlyPlayedRail items={recentlyPlayed} />
-        <CategoriesByStakeRail rows={categoriesByStake} />
-        <RecommendedRail items={recommendedNotPlayed} />
-        <ExploreNewVerticalRail items={exploreNewVertical} />
+        <PersonalizedHomeFeedTabs slices={personalizedFeed} />
       </main>
     </div>
   );

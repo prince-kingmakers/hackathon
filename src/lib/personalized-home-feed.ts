@@ -70,11 +70,21 @@ const toGameTile = (game: GameRecord): GameTile | null => {
   };
 };
 
-const getUniqueRecentGames = (persona: UserPersona) => {
+const getUniqueRecentGames = (persona: UserPersona, vertical?: VerticalRecord["id"]) => {
   const seenGameIds = new Set<string>();
 
   return bets
-    .filter((bet) => bet.userId === persona)
+    .filter((bet) => {
+      if (bet.userId !== persona) {
+        return false;
+      }
+
+      if (!vertical) {
+        return true;
+      }
+
+      return resolveGameVertical(bet.gameId) === vertical;
+    })
     .sort((a, b) => Date.parse(b.placedAt) - Date.parse(a.placedAt))
     .filter((bet) => {
       if (seenGameIds.has(bet.gameId)) {
@@ -94,6 +104,7 @@ const getBetsForPersona = (persona: UserPersona) =>
 const toCategoryByStakeRows = (
   persona: UserPersona,
   excludedGameIds: Set<string>,
+  vertical?: SliceVertical,
 ): CategoryByStakeRow[] => {
   const betsForPersona = getBetsForPersona(persona);
 
@@ -115,6 +126,10 @@ const toCategoryByStakeRows = (
 
     const category = categoriesById.get(game.categoryId);
     if (!category || !verticalIds.has(category.verticalId)) {
+      continue;
+    }
+
+    if (vertical && category.verticalId !== vertical) {
       continue;
     }
 
@@ -171,12 +186,16 @@ const resolveGameVertical = (gameId: string): SliceVertical | null => {
   return category.verticalId;
 };
 
-const resolveSliceVertical = (persona: UserPersona): SliceVertical => {
+const resolveVerticalOrder = (persona: UserPersona): SliceVertical[] => {
   if (persona === "casino" || persona === "virtuals") {
-    return persona;
+    return [persona];
   }
 
-  const stakeByVertical = new Map<SliceVertical, number>();
+  const fallbackOrder: SliceVertical[] = ["virtuals", "casino"];
+  const stakeByVertical = new Map<SliceVertical, number>(
+    fallbackOrder.map((vertical) => [vertical, 0]),
+  );
+
   for (const bet of getBetsForPersona(persona)) {
     const vertical = resolveGameVertical(bet.gameId);
     if (!vertical) {
@@ -186,8 +205,9 @@ const resolveSliceVertical = (persona: UserPersona): SliceVertical => {
     stakeByVertical.set(vertical, (stakeByVertical.get(vertical) ?? 0) + bet.stake);
   }
 
-  const top = [...stakeByVertical.entries()].sort(([, a], [, b]) => b - a)[0];
-  return top?.[0] ?? "casino";
+  return [...stakeByVertical.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([vertical]) => vertical);
 };
 
 const toRecommendedNotPlayed = (
@@ -273,28 +293,41 @@ export const getPersonalizedHomeFeed = (
   id: string | undefined,
 ): PersonalizedHomeFeedSlice[] => {
   const persona = resolvePersona(id);
-  const recentlyPlayedGames = getUniqueRecentGames(persona);
-  const excludedGameIds = new Set(recentlyPlayedGames.map((game) => game.id));
-  const categoriesByStake = toCategoryByStakeRows(persona, excludedGameIds);
-  const vertical = resolveSliceVertical(persona);
-  const recommendedNotPlayed = toRecommendedNotPlayed(persona, vertical);
-  const exploreNewVertical = toExploreNewVertical(persona);
+  const buildSlice = (
+    sliceId: UserPersona,
+    vertical: SliceVertical,
+    includeExploreNewVertical: boolean,
+  ): PersonalizedHomeFeedSlice => {
+    const recentlyPlayedGames = getUniqueRecentGames(persona, vertical);
+    const excludedGameIds = new Set(recentlyPlayedGames.map((game) => game.id));
+    const categoriesByStake = toCategoryByStakeRows(persona, excludedGameIds, vertical);
+    const recommendedNotPlayed = toRecommendedNotPlayed(persona, vertical);
 
-  const slice: PersonalizedHomeFeedSlice = {
-    id: persona,
-    recentlyPlayed: recentlyPlayedGames
-      .map((game) => toGameTile(game))
-      .filter((tile): tile is GameTile => Boolean(tile)),
-    categoriesByStake,
+    const slice: PersonalizedHomeFeedSlice = {
+      id: sliceId,
+      recentlyPlayed: recentlyPlayedGames
+        .map((game) => toGameTile(game))
+        .filter((tile): tile is GameTile => Boolean(tile)),
+      categoriesByStake,
+    };
+
+    if (recommendedNotPlayed.length > 0) {
+      slice.recommendedNotPlayed = recommendedNotPlayed;
+    }
+
+    if (includeExploreNewVertical) {
+      const exploreNewVertical = toExploreNewVertical(persona);
+      if (exploreNewVertical.length > 0) {
+        slice.exploreNewVertical = exploreNewVertical;
+      }
+    }
+
+    return slice;
   };
 
-  if (recommendedNotPlayed.length > 0) {
-    slice.recommendedNotPlayed = recommendedNotPlayed;
+  if (persona === "both") {
+    return resolveVerticalOrder(persona).map((vertical) => buildSlice(vertical, vertical, false));
   }
 
-  if (exploreNewVertical.length > 0) {
-    slice.exploreNewVertical = exploreNewVertical;
-  }
-
-  return [slice];
+  return [buildSlice(persona, persona, true)];
 };

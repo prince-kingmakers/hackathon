@@ -1,7 +1,7 @@
 import type { GameTile } from "@/types/personalization";
 
 export const BADGE_CLASS =
-  "inline-flex rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-[#d71920]";
+  "inline-flex rounded-full bg-[#d71920] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white";
 
 export const formatCountdown = (targetTime: string, nowMs: number) => {
   const targetMs = Date.parse(targetTime);
